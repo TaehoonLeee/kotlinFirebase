@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android-extensions'
 //firebase
 apply plugin: 'com.google.gms.google-services'
 
+//databinding
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
 
@@ -23,6 +26,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dataBinding {
+        enabled = true
     }
 
 }
