@@ -29,7 +29,7 @@ class register : AppCompatActivity() {
 
         val user = User(email, password)
 
-        database.child("users").setValue(user)
+        database.child("users").push().setValue(user)
     }
 
     data class User(
