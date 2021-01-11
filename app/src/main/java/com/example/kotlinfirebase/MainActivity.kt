@@ -35,29 +35,21 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.ed.text.toString().length > 0) {
-                    subject.map(object : Function<String, Long> {
-                        override fun apply(t: String?): Long {
-                            return binding.ed.text.toString()!!.toLong()
-                        }
-                    })
+                if (binding.ed.text.toString().isNotEmpty()) {
+                    subject.map { binding.ed.text.toString()!!.toLong() }
                         .flatMap(
-                            { gugu -> Observable.range(1, 9) },
+                            { Observable.range(1, 9) },
                             { dan, gugu -> dan.toString() + " * " + gugu + " = " + dan * gugu + "\n" })
-                        .scan({ x, y -> x + y })
-                        .subscribe({ text -> binding.tv.setText(text) })
+                        .scan { x, y -> x + y }
+                        .subscribe { text -> binding.tv.text = text }
                 }
                 else {
-                    subject.map(object : Function<String, Long> {
-                        override fun apply(t: String?): Long {
-                            return 0
-                        }
-                    })
+                    subject.map { 0 }
                         .flatMap(
                             { gugu -> Observable.range(1, 9) },
                             { dan, gugu -> dan.toString() + " * " + gugu + " = " + dan * gugu + "\n" })
-                        .scan({ x, y -> x + y })
-                        .subscribe({ text -> binding.tv.setText(text) })
+                        .scan { x, y -> x + y }
+                        .subscribe { text -> binding.tv.text = text }
                 }
             }
         })
