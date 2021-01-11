@@ -24,18 +24,12 @@ class login : AppCompatActivity() {
 
         database = Firebase.database.getReference("users")
 
-        binding.btnRegister.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                val intent = Intent(this@login, register::class.java)
-                startActivity(intent)
-            }
-        })
+        binding.btnRegister.setOnClickListener {
+            val intent = Intent(this@login, register::class.java)
+            startActivity(intent)
+        }
 
-        binding.btnLogin.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                login()
-            }
-        })
+        binding.btnLogin.setOnClickListener { login() }
     }
 
     fun login() {

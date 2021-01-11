@@ -16,11 +16,7 @@ class register : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
 
         database = Firebase.database.reference
-        binding.btnDone.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                register()
-            }
-        })
+        binding.btnDone.setOnClickListener { register() }
     }
 
     fun register() {
