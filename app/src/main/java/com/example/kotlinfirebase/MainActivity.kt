@@ -38,15 +38,15 @@ class MainActivity : AppCompatActivity() {
                 if (binding.ed.text.toString().isNotEmpty()) {
                     subject.map { binding.ed.text.toString()!!.toLong() }
                         .flatMap(
-                            { Observable.range(1, 9) },
-                            { dan, gugu -> dan.toString() + " * " + gugu + " = " + dan * gugu + "\n" })
+                            { BehaviorSubject.range(1, 9) },
+                        { dan, gugu -> dan.toString() + " * " + gugu + " = " + dan * gugu + "\n" })
                         .scan { x, y -> x + y }
                         .subscribe { text -> binding.tv.text = text }
                 }
                 else {
                     subject.map { 0 }
                         .flatMap(
-                            { gugu -> Observable.range(1, 9) },
+                            { BehaviorSubject.range(1, 9) },
                             { dan, gugu -> dan.toString() + " * " + gugu + " = " + dan * gugu + "\n" })
                         .scan { x, y -> x + y }
                         .subscribe { text -> binding.tv.text = text }
